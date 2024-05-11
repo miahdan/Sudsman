@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=3 uid="uid://cesmncm5584br"]
+
+[ext_resource type="Script" path="res://Player.gd" id="1_uc2ey"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3hv2q"]
+size = Vector2(594, 28)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_e50k5"]
+bounce = 2.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k3t2a"]
+radius = 54.5711
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kme3p"]
+radius = 23.0
+height = 78.0
+
+[node name="World" type="Node2D"]
+position = Vector2(0, 354)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+
+[node name="Floor" type="StaticBody2D" parent="."]
+position = Vector2(0, 155)
+
+[node name="FloorCollider" type="CollisionShape2D" parent="Floor"]
+shape = SubResource("RectangleShape2D_3hv2q")
+metadata/_edit_lock_ = true
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+position = Vector2(-208, -309)
+mass = 0.1
+physics_material_override = SubResource("PhysicsMaterial_e50k5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+shape = SubResource("CircleShape2D_k3t2a")
+debug_color = Color(0.772962, 0, 0.285729, 0.42)
+metadata/_edit_lock_ = true
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(0, 92)
+script = ExtResource("1_uc2ey")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("CapsuleShape2D_kme3p")
+debug_color = Color(0.152941, 0.545098, 0, 0.780392)
+metadata/_edit_lock_ = true
